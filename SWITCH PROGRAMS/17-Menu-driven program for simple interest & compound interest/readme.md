@@ -23,7 +23,7 @@ This C program calculates simple interest and compound interest based on the use
 - The program outputs the calculated interest and the total amount (principal + interest).
 
 ## Code To Do It Using Pow fn--
-<!-- #include <stdio.h>
+#include <stdio.h>
 #include <math.h> // Note: math.h is required for pow function in compound interest calculation0
 int main() {
     int choice;
@@ -82,4 +82,4 @@ int main() {
     }
 
     return 0;
-} -->
+}
