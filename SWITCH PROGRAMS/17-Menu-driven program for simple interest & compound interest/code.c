@@ -1,10 +1,19 @@
 #include <stdio.h>
-#include <math.h> // Note: math.h is required for pow function in compound interest calculation
+
+// User-defined function to calculate base^exponent for double exponent (only supports positive integer exponents)
+double power(double base, int exponent) {
+    double result = 1.0;
+    for (int i = 0; i < exponent; i++) {
+        result *= base;
+    }
+    return result;
+}
 
 int main() {
     int choice;
     double principal, rate, time;
     double interest, total_amount;
+
 
     printf("Interest Calculator Menu:\n");
     printf("1. Simple Interest\n");
@@ -12,10 +21,12 @@ int main() {
     printf("Enter your choice (1 or 2): ");
     scanf("%d", &choice);
 
+
     if (choice != 1 && choice != 2) {
         printf("Invalid choice! Please select 1 or 2.\n");
         return 1;
     }
+
 
     printf("Enter principal amount: ");
     scanf("%lf", &principal);
@@ -24,6 +35,7 @@ int main() {
         return 1;
     }
 
+
     printf("Enter rate of interest (in %%): ");
     scanf("%lf", &rate);
     if (rate <= 0) {
@@ -31,12 +43,14 @@ int main() {
         return 1;
     }
 
+
     printf("Enter time period (in years): ");
     scanf("%lf", &time);
     if (time <= 0) {
         printf("Time period must be positive.\n");
         return 1;
     }
+
 
     switch (choice) {
         case 1: // Simple Interest
@@ -46,16 +60,21 @@ int main() {
             printf("Total Amount = %.2lf\n", total_amount);
             break;
 
+
         case 2: // Compound Interest
-            interest = principal * (pow((1 + rate / 100.0), time) - 1);
+            // time is double, for simplicity, only handle integer part here
+            // modify time casting to int for power function
+            interest = principal * (power((1 + rate / 100.0), (int)time) - 1);
             total_amount = principal + interest;
             printf("Compound Interest = %.2lf\n", interest);
             printf("Total Amount = %.2lf\n", total_amount);
             break;
 
+
         default:
             printf("Invalid choice.\n");
     }
+
 
     return 0;
 }
